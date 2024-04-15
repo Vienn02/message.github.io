@@ -10,5 +10,5 @@ yesBtn.addEventListener("click", () => {
 });
 
 noBtn.addEventListener("click", () => {
-  alert("Hey there! Can't escape that easily   Click yes to continue.");
+  alert(ERROR ❌);
 });
