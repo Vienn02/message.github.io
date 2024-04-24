@@ -27,6 +27,9 @@
         btnYes.addEventListener("click", function() {
             let name = prompt("What is your name?");
             if (name) {
+                // Convert the name to sentence case
+                name = name.toLowerCase(); //Convert all characters to lowercase
+                name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalize the first character
                 alert("Hello, " + name + "!");
             }
 
