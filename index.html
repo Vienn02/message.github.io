@@ -6,7 +6,7 @@
     <title>Welcome!</title>
 </head>
 <body>
-    <h1>Welcome sa Website ni Vien version 2.0</h1>
+    <h1>Welcome sa Website ni Vien version 3.02</h1>
     <p>Do you want to continue?</p>
     <button id="btnYes">Yes</button>
     <button id="btnNo">No</button>
@@ -30,10 +30,10 @@
             }
 
             // Message 2 with Yes/No options
-            let message2Response = confirm("matulog ka na " + name +", huwag kang magpakapuyat");
+            let message2Response = confirm("Matulog ka na " + name +", huwag kang magpakapuyat");
             if (message2Response) {
                 alert("Masama ang pagpupuyat sa ating katawan");
-                alert("Okay, Goodnight");
+                alert("Okay, Goodnight! Sleepwell");
             }
 
             // Play the song and synchronize text
@@ -41,9 +41,9 @@
             audio.play();
 
             const synchronizedText = [
-                { time: 1, text: "Will we ever find" },
-                { time: 5, text: "A way to make our time "},
-                { time: 11, text: "last forever?" },
+                { time: 1, text: "Will we ever find 🕵" },
+                { time: 5, text: "A way to make our time ⏰⏰ "},
+                { time: 11, text: "last forever? ⏳️" },
                 { time: 14, text: "Because I" },
                 { time: 16, text: "begin to miss you", lastLine: true }, // Marking the last line of text
                 // Add more synchronized text entries as needed
@@ -87,7 +87,7 @@
         });
 
         btnNo.addEventListener("click", function() {
-            alert("Okay, Goodnight!");
+            alert("Okay, Goodnight! Sleepwell");
         });
     </script>
 </body>
