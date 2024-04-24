@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome!</title>
+    <style>
+        #myImage {
+            width: 300px; /* Adjust the width as needed */
+            height: auto; /* Preserve the aspect ratio */
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome sa Website ni Vien version 3.02</h1>
@@ -77,6 +83,7 @@
             function displayImage() {
                 const image = document.createElement("img");
                 image.src = "image.jpg";
+                image.id = "myImage"; // Assign an ID to the image element
                 document.body.appendChild(image);
             }
 
