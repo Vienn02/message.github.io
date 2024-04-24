@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+</head>
+<body>
+    <h1>Welcome sa website ni Vien</h1>
+    <p>Do you want to continue?</p>
+    <button id="btnYes">Yes</button>
+    <button id="btnNo">No</button>
+
+    <audio id="myAudio" src="audio.mp3"></audio>
+
+    <script>
+        const btnYes = document.getElementById("btnYes");
+        const btnNo = document.getElementById("btnNo");
+
+        btnYes.addEventListener("click", function() {
+            let name = prompt("What is your name?");
+            if (name) {
+                alert("Hello, " + name + "!");
+            }
+
+            // Message 1 with Yes/No options
+            let message1Response = confirm("Naiisip mo na bang sumuko sa buhay?");
+            if (message1Response) {
+                alert("Bakit ka susuko eh di pa tayo nakatikim ng Diwata Pares Overload");
+            }
+
+            // Message 2 with Yes/No options
+            let message2Response = confirm("matulog ka na " + name +", huwag kang magpakapuyat");
+            if (message2Response) {
+                alert("Masama ang pagpupuyat sa ating katawan");
+                alert("Okay, Goodnight");
+            }
+
+            // Play the song and synchronize text
+            const audio = document.getElementById("myAudio");
+            audio.play();
+
+            const synchronizedText = [
+                { time: 1, text: "Will we ever find" },
+                { time: 5, text: "A way to make our time "},
+                { time: 11, text: "last forever?" },
+                { time: 14, text: "Because I" },
+                { time: 16, text: "begin to miss you", lastLine: true }, // Marking the last line of text
+                // Add more synchronized text entries as needed
+            ];
+
+            let textIndex = 0;
+
+            function updateText() {
+                const currentText = synchronizedText[textIndex];
+                if (currentText && audio.currentTime >= currentText.time) {
+                    displayLyrics(currentText.text);
+                    textIndex++;
+                    if (currentText.lastLine) {
+                        displayImage();
+                    }
+                }
+            }
+
+            function displayLyrics(lyrics) {
+                const lyricsContainer = document.createElement("p");
+                lyricsContainer.textContent = lyrics;
+                document.body.appendChild(lyricsContainer);
+            }
+
+            const textInterval = setInterval(updateText, 1000);
+
+            audio.addEventListener("ended", function() {
+                clearInterval(textInterval);
+            });
+
+            function displayImage() {
+                const image = document.createElement("img");
+                image.src = "image.png";
+                document.body.appendChild(image);
+            }
+
+            window.addEventListener("beforeunload", function() {
+                audio.pause();
+                clearInterval(textInterval);
+            });
+        });
+
+        btnNo.addEventListener("click", function() {
+            alert("Okay, Goodnight!");
+        });
+    </script>
+</body>
+</html>
