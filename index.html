@@ -4,103 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome!</title>
-    <style>
-        #myImage {
-            width: 200px; /* Adjust the width as needed */
-            height: auto; /* Preserve the aspect ratio */
-            border-radius: 10px
-        }
-    </style>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <h1>Welcome sa Website ni Vien version 4.25</h1>
     <p>Do you want to continue?</p>
-    <button id="btnYes">Yes</button>
-    <button id="btnNo">No</button>
+
+    <div class="button-container">
+        <button id="btnYes">Yes</button>
+        <button id="btnNo">No</button>
+    </div>
+
 
     <audio id="myAudio" src="audio.mp3"></audio>
 
-    <script>
-        const btnYes = document.getElementById("btnYes");
-        const btnNo = document.getElementById("btnNo");
+    <!-- Link to the external JavaScript file -->
+    <!-- Placing script at the end of body is often recommended -->
+    <script src="script.js"></script>
 
-        btnYes.addEventListener("click", function() {
-            let name = prompt("What is your name?");
-            if (name) {
-                // Convert the name to sentence case
-                name = name.toLowerCase(); //Convert all characters to lowercase
-                name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalize the first character
-                alert("Hello, " + name + "!");
-            }
-
-            // Message 1 with Yes/No options
-            let message1Response = confirm("Naiisip mo na bang sumuko sa buhay?");
-            if (message1Response) {
-                alert("Huwag kasi bakit ka susuko eh di pa tayo nakatikim ng Diwata Pares Overload");
-            }
-
-            // Message 2 with Yes/No options
-            let message2Response = confirm("Matulog ka na " + name +", huwag kang magpakapuyat");
-            if (message2Response) {
-                alert("Masama ang pagpupuyat sa ating katawan");
-                alert("Okay, Goodnight " + name + "! Sleepwell");
-            }
-
-            // Play the song and synchronize text
-            const audio = document.getElementById("myAudio");
-            audio.play();
-
-            const synchronizedText = [
-                { time: 0, text: "Now playing: Amtrak by Los Retros ▶ 0:42 - 1:15" },
-                { time: 1, text: "Will we ever find 🕵" },
-                { time: 6, text: "A way to make our time ⏰⏰ "},
-                { time: 11, text: "last forever? ⏳️" },
-                { time: 14, text: "Because I" },
-                { time: 16, text: "begin to miss you", lastLine: true }, // Marking the last line of text
-                // Add more synchronized text entries as needed
-            ];
-
-            let textIndex = 0;
-
-            function updateText() {
-                const currentText = synchronizedText[textIndex];
-                if (currentText && audio.currentTime >= currentText.time) {
-                    displayLyrics(currentText.text);
-                    textIndex++;
-                    if (currentText.lastLine) {
-                        displayImage();
-                    }
-                }
-            }
-
-            function displayLyrics(lyrics) {
-                const lyricsContainer = document.createElement("p");
-                lyricsContainer.textContent = lyrics;
-                document.body.appendChild(lyricsContainer);
-            }
-
-            const textInterval = setInterval(updateText, 1000);
-
-            audio.addEventListener("ended", function() {
-                clearInterval(textInterval);
-            });
-
-            function displayImage() {
-                const image = document.createElement("img");
-                image.src = "image.jpg";
-                image.id = "myImage"; // Assign an ID to the image element
-                document.body.appendChild(image);
-            }
-
-            window.addEventListener("beforeunload", function() {
-                audio.pause();
-                clearInterval(textInterval);
-            });
-        });
-
-        btnNo.addEventListener("click", function() {
-            alert("Okay, Goodnight " + name + "! Sleepwell");
-        });
-    </script>
 </body>
 </html>
