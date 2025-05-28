@@ -16,13 +16,11 @@ btnYes.addEventListener("click", function() {
         alert("Hello, " + name + "!");
     }
 
-
     // Message 1 with Yes/No options
     let message1Response = confirm("Naiisip mo na bang sumuko sa buhay?");
     if (message1Response) {
         alert("Huwag kasi bakit ka susuko eh di pa tayo nakatikim ng Diwata Pares Overload");
     }
-
 
     // Message 2 with Yes/No options
     // Use the potentially updated 'name' variable
@@ -31,7 +29,6 @@ btnYes.addEventListener("click", function() {
         alert("Masama ang pagpupuyat sa ating katawan");
         alert("Okay, Goodnight " + name + "! Sleepwell");
     }
-
 
     // Play the song and synchronize text
     audio.currentTime = 0; // Start from the beginning if clicked again
@@ -42,7 +39,6 @@ btnYes.addEventListener("click", function() {
          clearInterval(textInterval); // Clear any previous interval
     });
 
-
     const synchronizedText = [
         { time: 0, text: "Now playing: Amtrak by Los Retros ▶ 0:42 - 1:15" },
         { time: 1, text: "Will we ever find 🕵" },
@@ -52,7 +48,6 @@ btnYes.addEventListener("click", function() {
         { time: 16, text: "begin to miss you", lastLine: true }, // Marking the last line of text
         // Add more synchronized text entries as needed
     ];
-
 
     let textIndex = 0;
     let imageDisplayed = false; // Flag to ensure image logic runs only once
@@ -74,29 +69,36 @@ btnYes.addEventListener("click", function() {
 
              // Check if current time has passed the text entry time
              if (audio.currentTime >= currentText.time) {
-                 displayLyrics(currentText.text);
+                 displayLyrics(currentText.text); // Display the lyric line
                  textIndex++; // Move to the next text entry
 
                  // Check if this is the last line and image hasn't been displayed yet
                  if (currentText.lastLine && !imageDisplayed) {
-                     displayImage();
+                     displayImage(); // Display the image
                      imageDisplayed = true; // Set flag so this block doesn't run again
                  }
              }
          }
     }
 
-
     function displayLyrics(lyrics) {
         const lyricsContainer = document.createElement("p");
         lyricsContainer.textContent = lyrics;
         // Append lyrics below the existing content
         document.body.appendChild(lyricsContainer);
+
+        // >>> ADDED SCROLL LOGIC HERE <<<
+        // Scroll the newly added paragraph into view
+        lyricsContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        // 'behavior: "smooth"' provides a smooth scrolling animation
+        // 'block: "end"' aligns the bottom of the element with the bottom of the viewport
+        // Alternatively, you could use block: 'nearest' which scrolls only if needed to make the element visible,
+        // and tries to put it in the nearest edge of the viewport. 'end' is often better for sequential content like lyrics.
+        // >>> END OF ADDED SCROLL LOGIC <<<
     }
 
     // Start the interval to check for text updates
     textInterval = setInterval(updateText, 500); // Check more frequently (e.g., every 500ms) for smoother sync
-
 
     // This function is called when the text entry with lastLine: true is reached
     function displayImage() {
@@ -121,7 +123,6 @@ btnYes.addEventListener("click", function() {
 
         }, 3000); // 3000 milliseconds = 3 seconds delay
     }
-
 
     // The original 'ended' listener is now less critical as we manually pause,
     // but it can stay as a fallback. The updateText loop also checks audio.ended.
