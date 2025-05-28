@@ -1,41 +1,44 @@
-*
-{
+/* Basic reset and body styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; /* Use flexbox for initial centering */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally in the column */
     min-height: 100vh;
     background: whitesmoke;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 50px; /* Add some space at the top */
+    text-align: center; /* Center text elements like h1 and p */
 }
 
-.gif {
-    height: 100%;
-    width: 100%;
-}
-
-h2 {
+h1 {
     text-align: center;
-    font-size: 1.5em;
-    color: #e94d58;
-    margin: 15px 0;
+    font-size: 2em; /* Adjusted size */
+    color: #333; /* Default text color */
+    margin-bottom: 20px; /* Space below heading */
 }
-.btn-group {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+
+p {
+    margin-bottom: 15px; /* Space below paragraph */
+    /* Styles for dynamically added lyrics */
+    margin-top: 10px;
 }
+
+/* Container for buttons to help manage spacing */
+.button-container {
+    margin-top: 20px;
+    margin-bottom: 20px; /* Space below buttons */
+}
+
 button {
-    position: absolute;
+    /* Combining styles from both sources */
     width: 150px;
-    height: inherit;
+    height: 50px;
     color: white;
     font-size: 1.2em;
     border-radius: 30px;
@@ -43,18 +46,32 @@ button {
     cursor: pointer;
     box-shadow: 0 2px 4px gray;
     border: 2px solid #e94d58;
-    font-size: 1.2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0 10px; /* Add horizontal margin between buttons */
+    position: static; /* Override any potential absolute positioning */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Optional: Smooth transition on hover/active */
 }
-button:nth-child(1) {
-    margin-left: -200px;
+
+button:nth-child(1) { /* Styles for the 'Yes' button */
     background: #e94d58;
 }
-button:nth-child(2) {
-    margin-right: -200px;
+
+button:nth-child(2) { /* Styles for the 'No' button */
     background: white;
     color: #e94d58;
 }
 
-.header {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+button:hover {
+    opacity: 0.9; /* Optional: Slight transparency on hover */
 }
+
+
+#myImage {
+    width: 200px; /* Adjust the width as needed */
+    height: auto; /* Preserve the aspect ratio */
+    border-radius: 10px;
+    margin-top: 20px; /* Space above the image */
+}
+
+/* Removed styles for .gif, .wrapper, .btn-group, specific absolute button positions */
+/* Removed .header style as it wasn't applied to any specific element */
